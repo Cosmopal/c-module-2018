@@ -1,3 +1,8 @@
+#ifndef _STR_H
+#define _STR_H
+
+
+
 /**
  * my_strncasecmp - Case insensitive, length-limited string comparison
  * @s1: One string
@@ -133,3 +138,6 @@ int strnlen(const char *s, int count);
  *
  */
 void *my_memset(void *s, int c, int count);
+
+
+#endif /* end of include guard: _STR_H */
