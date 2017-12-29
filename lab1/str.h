@@ -72,7 +72,7 @@ int my_strncmp(const char *cs, const char *ct, int count);
  * @s: The string to be searched
  * @c: The character to search for
  */
-char *strchr(const char *s, int c);
+char *my_strchr(const char *s, int c);
 
 /**
  * strchrnul - Find and return a character in a string, or end of string

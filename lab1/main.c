@@ -3,16 +3,24 @@
 
 
 int main(){
-	char s[4] = "Hel";
+	char s[] = "Hel";
 	*s = 'o';
 	printf("%s\n", s);
+	char *sptr = ((char*) s);
+	char c = *sptr;
+	while (c!='\0'){
+		printf("%c\n", c);
+		c = *++sptr;
+	}
 
 	char s1[4];
+
 
 	strcpy(s1,s);
 	printf("strcopy \n");
 	printf("%s\n", s);
 	printf("%s\n\n", s1);
+
 
 	char s2[4];
 
@@ -55,20 +63,29 @@ int main(){
 	printf("%d\n\n", my_strncmp(s4,s5,5));
 
 
+	sptr = s;
+	c = *sptr;
+	while (c!='\0'){
+		printf("%c\n", c);
+		c = *++sptr;
+	}
 	//It can be seen that for not found, the address of the null at the end of the string is returned.
-	printf("strchr\n");
+	printf("my_strchr\n");
 	printf("search for 'e' in %s\n", s);
 	// printf("%c\n", *strchr(s,(int)'l'));
-	printf("char - %c, ptr adr - %p\n\n", *strchr(s,(int)'e'),strchr(s,(int)'e'));	
+	sptr = my_strchr(s,(int)'e');
+	printf("char - %c, ptr adr - %p\n\n", *sptr,sptr);	
 	printf("search for 'a' in %s\n", s);
-	printf("char - %c, ptr adr - %p\n\n", *strchr(s,(int)'a'),strchr(s,(int)'a'));
+	sptr = my_strchr(s,(int)'a');
+	printf("char - %c, ptr adr - %p\n\n", *sptr,sptr);	
+	// printf("char - %c, ptr adr - %p\n\n", *my_strchr(s,(int)'a'),my_strchr(s,(int)'a'));
 
 
 	printf("strchrnul\n");
 	printf("search for 'e' in %s\n", s);
-	printf("char - %c, ptr adr - %p\n\n", *strchr(s,(int)'e'),strchr(s,(int)'e'));	
+	printf("char - %c, ptr adr - %p\n\n", *strchrnul(s,(int)'e'),strchrnul(s,(int)'e'));	
 	printf("search for 'a' in %s\n", s);
-	printf("char - %c, ptr adr - %p\n\n", *strchr(s,(int)'a'),strchr(s,(int)'a'));
+	printf("char - %c, ptr adr - %p\n\n", *strchrnul(s,(int)'a'),strchrnul(s,(int)'a'));
 
 
 	//ptr address of 't' should be 1 greater than that of 'g'
@@ -81,7 +98,26 @@ int main(){
 	printf("search for 't' in %s\n", s6);
 	printf("char - %c, ptr adr - %p\n", *strrchr(s6,(int)'t'),strrchr(s6,(int)'t'));
 	printf("search for 'e' in %s\n", s6);
-	printf("char - %c, ptr adr - %p\n\n", *strchr(s6,(int)'e'),strchr(s6,(int)'e'));
+	printf("char - %c, ptr adr - %p\n\n", *strrchr(s6,(int)'e'),strrchr(s6,(int)'e'));
+
+
+	char s7[12] = "    abc    \0";
+	printf("skip_spaces\n");
+	printf("String is %s\n", s7);
+	
+	printf("Skipped spaces :%s\n\n", skip_spaces(s7));
+
+	printf("strim\n");
+	printf("String: %s\n", s7);
+	printf("Trimmed :%s\n\n", strim(s7));
+
+
+	char ptr[10] = "abcfderas";
+	printf("my_memset\n");
+	printf("Pointer: %p\n", ptr);
+	printf("Current Allocation: %s", ptr);
+	my_memset(ptr,3,10);
+	printf("Changed to %s\n",ptr);
 
 
 }

@@ -1,6 +1,7 @@
 #include <ctype.h>
 #include <xlocale.h>
 #include "str.h"
+#include <stdio.h>
 
 
 /**
@@ -174,13 +175,40 @@ int my_strncmp(const char *cs, const char *ct, int count){
  * @s: The string to be searched
  * @c: The character to search for
  */
-char *strchr(const char *s, int c){
+char *my_strchr(const char *s, int c){
 	char a = (char) c;
 	char b = *s;
+	int found = 0;
+
+	/*char *sptr = s;
+	char c1 = *sptr;
+	printf("my_strchr, string is: %s\n", sptr);
+	while (c1!='\0'){
+		printf("%c\n", c1);
+		c1 = *++s;
+	}
+
+	s= sptr;
+	c1 = *s;
+
+	printf("my_strchr, string is: %s\n", sptr);
+	while (c1!='\0'){
+		printf("%c\n", c1);
+		c1 = *++s;
+	}
+
+	s= sptr;*/
+
+
+	// printf("c1 is: %c\n",c1);
 
 	while (a!=b && b!='\0'){
+		printf("a = %c, b = %c\n",a, b);
 		b = *++s;
 	}
+/*
+	if (b=='\0')
+		return NULL;*/
 
 	return s;
 
@@ -200,6 +228,7 @@ char *strchrnul(const char *s, int c){
 	char b = *s;
 
 	while (a!=b && b!='\0'){
+		printf("%c\n", b);
 		b = *++s;
 	}
 
@@ -225,8 +254,8 @@ char *strrchr(const char *s, int c){
 		b = *++s;
 	}
 
-	if (b=='\0' && !found)
-		s1 = s;
+	/*if (b=='\0' && !found)
+		s1 = NULL;*/
 
 	return s1;
 }
@@ -256,4 +285,94 @@ char *strnchr(const char *s, int count, int c){
 		s1 = s;
 
 	return s1;
+}
+
+/**
+ * skip_spaces - Removes leading whitespace from @str.
+ * @str: The string to be stripped.
+ *
+ * Returns a pointer to the first non-whitespace character in @str.
+ */
+char *skip_spaces(const char *str){
+	char c = *str;
+	while (c==' '){
+		printf("char c: '%c'\n",c);
+		c = *++str;
+	}
+	return str;
+}
+
+
+/**
+ * strim - Removes leading and trailing whitespace from @s.
+ * @s: The string to be stripped.
+ *
+ * Note that the first trailing whitespace is replaced with a %NUL-terminator
+ * in the given string @s. Returns a pointer to the first non-whitespace
+ * character in @s.
+ */
+char *strim(char *s){
+	s = skip_spaces(s);
+	printf("%s\n", s);
+	int len = my_strlen(s);
+	printf("len = %d\n", len);
+	s+=len-1;
+	int a = 0;
+	for (;*s == ' ';s--){
+		// printf("%s\n", s);
+		// printf("%c\n", *s);
+		a++;
+	}
+	*++s = '\0';
+	s-=(len-a);
+	return s;
+}
+
+/**
+ * my_strlen - Find the length of a string
+ * @s: The string to be sized
+ */
+int my_strlen(const char *s){
+	printf("my_strlen, s = %s\n", s);
+	int a = 0;
+	char c = *s;
+	while (c!='\0'){
+		// printf("%c\n", c);
+		s++;
+		// printf("here\n");
+		c = *s;
+		a++;
+		// printf("%d\n", a);
+	}
+	// printf("%d\n", a);
+	return a;
+}
+
+/**
+ * strnlen - Find the length of a length-limited string
+ * @s: The string to be sized
+ * @count: The maximum number of bytes to search
+ */
+int strnlen(const char *s, int count){
+	int a;
+	char c = *s;
+	while (c!='\0' && count--){
+		a++;
+	}
+	return a;
+}
+
+/**
+ * my_memset - Fill a region of memory with the given value
+ * @s: Pointer to the start of the area.
+ * @c: The byte to fill the area with
+ * @count: The size of the area.
+ *
+ */
+void *my_memset(void *s, int c, int count){
+	int *s1 = (int*) s;
+	for (int i = 0; i<count; i++){
+		*s1++ = c;
+	}
+	return s;
 }

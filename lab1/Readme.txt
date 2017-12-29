@@ -20,3 +20,9 @@ my_strncmp
 strchr
 strchrnul
 strrchr
+strnchr
+skip_spaces
+strim
+my_strlen
+strnlen
+memset
