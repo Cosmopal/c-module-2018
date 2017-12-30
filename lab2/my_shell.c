@@ -101,7 +101,7 @@ int main(int argc, char const *argv[])
 		if (execvp(args[0],args) <0){
 			printf("Error executing function %s\n", args[0]);
 		}
-		exit(-1);
+		exit(EXIT_FAILURE);
 	}
 		else if (pid < 0){
 			//Failure in forking

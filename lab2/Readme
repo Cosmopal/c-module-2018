@@ -1,0 +1,23 @@
+This is the submission for lab 2 of c-refresher module - Ultra simple shell.
+
+
+I found a lot of help from internet - stackoverflow etc.
+
+
+in the while (true) loop, the following happens:
+
+	The current directory is printed, followed by ">>", pretty much like the usual linux terminal
+	Input line is read
+	Arguments are parsed from the line
+	It is checked if the command is an inbuilt function ("cd" or "exit")
+	If Inbuilt, then the inbuilt fn is executed
+	Else the process is forked:
+		execpv is used for the sys call, as it does the job of
+		searching the required executable in the path variable;
+		the child calls exec to be replaced by the command entered;
+		if there is error, the child exits with failure message;
+
+	If there is error loading the process, "Error Forking" is printed
+
+	If the fork was successful, the parent waits till the child
+	terminates.
