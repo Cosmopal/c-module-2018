@@ -1,6 +1,6 @@
-SHELL = my_shell.c
+EXEC = shell
 
-all: $(SHELL)
+all: $(EXEC)
 
-$(SHELL):
-	gcc $(SHELL) -o shell
+$(EXEC): my_shell.c
+	gcc my_shell.c -o shell
