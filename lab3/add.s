@@ -17,10 +17,12 @@ my_add:
 # movl -8(%rsp), %ebx
 # movl -12(%rsp), %eax
 # addl %ebx, eax
-movl $0, %eax
-addl %edi, %eax
-addl %esi,%eax
 
 # movq %rbp, %rsp
 # popq %rbp
+
+movl $0, %eax
+addl %edi, %esi
+movl %esi,%eax
+
 ret
